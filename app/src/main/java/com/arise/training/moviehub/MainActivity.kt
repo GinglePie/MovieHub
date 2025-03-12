@@ -2,11 +2,13 @@ package com.arise.training.moviehub
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.commit
 import com.arise.training.moviehub.SplashActivity.Companion.EXTRA_NAME
 import com.arise.training.moviehub.databinding.ActivityMainBinding
 import timber.log.Timber
@@ -27,6 +29,25 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        val fragment = supportFragmentManager.findFragmentByTag("tagHome")
+
+        if (fragment == null) {
+            val newFragment = HomeFragment.newInstance(param1 = viewModel.number.value.toString())
+            supportFragmentManager.commit {
+                setReorderingAllowed(true)
+                add(
+                    R.id.mainFragmentContainer,
+                    newFragment,
+                    "tagHome"
+                )
+                addToBackStack(null)
+            }
+        } else {
+            supportFragmentManager.commit {
+                show(fragment)
+            }
+        }
+
         if (savedInstanceState != null) {
             viewModel.setCounter(value = savedInstanceState.getInt(STATE_COUNT))
         }
@@ -42,6 +63,17 @@ class MainActivity : AppCompatActivity() {
 //            goToDetailActivity()
             Timber.d("onClick")
         }
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val fragmentManager = supportFragmentManager
+                if (fragmentManager.backStackEntryCount > 1) {
+                    fragmentManager.popBackStack()
+                } else {
+                    finish()
+                }
+            }
+        })
 
         Timber.d("onCreate")
     }

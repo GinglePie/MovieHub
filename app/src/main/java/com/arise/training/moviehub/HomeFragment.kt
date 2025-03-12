@@ -1,10 +1,12 @@
 package com.arise.training.moviehub
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import com.arise.training.moviehub.databinding.FragmentHomeBinding
 import timber.log.Timber
 
@@ -23,30 +25,85 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding: FragmentHomeBinding get() = _binding!!
 
+    private val viewModel: MainViewModel by activityViewModels()
+
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
+    private var number: String? = null
     private var param2: String? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        Timber.d("onAttach $number")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
+            number = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
+        Timber.d("onCreate $number")
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        Timber.d("onCreateView $number")
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.number.observe(viewLifecycleOwner) {
+            binding.homeTv.text = "count $it"
+        }
+
+        Timber.d("onViewCreated $number")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Timber.d("onStart $number")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Timber.d("onResume $number")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Timber.d("onPause $number")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Timber.d("onStop $number")
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        Timber.d("onSaveInstanceState $number")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        Timber.d("onDestroyView $number")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Timber.d("onDestroy $number")
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Timber.d("onDetach $number")
     }
 
     companion object {
@@ -60,7 +117,7 @@ class HomeFragment : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(param1: String = "", param2: String = "") =
             HomeFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
