@@ -8,6 +8,16 @@
     android:background="@color/background"
     tools:context=".MainActivity">
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/mainFragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/mainTv"
+        tools:layout="@layout/fragment_home" />
+
     <TextView
         android:id="@+id/mainTv"
         android:layout_width="wrap_content"
@@ -19,7 +29,7 @@
         app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mainFragmentContainer"
         app:layout_constraintBottom_toTopOf="@id/mainBtn" />
 
     <Button
@@ -27,6 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Next"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainTv" />
 
