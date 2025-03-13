@@ -41,4 +41,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainTv" />
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/mainBottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:backgroundTint="@color/background"
+        app:itemIconTint="@color/selector_item_color_bottom_nav"
+        app:itemTextColor="@color/selector_item_color_bottom_nav"
+        app:itemRippleColor="@null"
+        app:itemActiveIndicatorStyle="@null"
+        app:menu="@menu/menu_main_bottom_nav"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
