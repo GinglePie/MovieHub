@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.arise.training.moviehub.databinding.FragmentHomeBinding
 import timber.log.Timber
 
@@ -60,6 +62,11 @@ class HomeFragment : Fragment() {
 
         viewModel.number.observe(viewLifecycleOwner) {
             binding.homeTv.text = "count $it"
+        }
+
+        binding.homeTv.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailActivity(entryPoint = "open from home")
+            findNavController().navigate(action)
         }
 
         Timber.d("onViewCreated $number")

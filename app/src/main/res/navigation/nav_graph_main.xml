@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_main"
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.arise.training.moviehub.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_detailActivity"
+            app:destination="@id/detailActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/seachFragment"
+        android:name="com.arise.training.moviehub.SeachFragment"
+        android:label="fragment_seach"
+        tools:layout="@layout/fragment_seach" />
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.arise.training.moviehub.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" />
+    <activity
+        android:id="@+id/detailActivity"
+        android:name="com.arise.training.moviehub.DetailActivity"
+        android:label="activity_detail"
+        tools:layout="@layout/activity_detail" >
+        <argument
+            android:name="entryPoint"
+            app:argType="string"
+            android:defaultValue="none" />
+    </activity>
+</navigation>
