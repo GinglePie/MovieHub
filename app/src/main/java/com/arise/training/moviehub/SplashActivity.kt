@@ -30,7 +30,7 @@ class SplashActivity : AppCompatActivity() {
         lifecycleScope.launch {
             delay(3000)
             goToMainActivity()
-//            finish()
+            finish()
         }
         Timber.d("onCreate")
     }

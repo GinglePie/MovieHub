@@ -9,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.commit
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.arise.training.moviehub.SplashActivity.Companion.EXTRA_NAME
 import com.arise.training.moviehub.databinding.ActivityMainBinding
 import timber.log.Timber
@@ -29,24 +32,9 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val fragment = supportFragmentManager.findFragmentByTag("tagHome")
-
-        if (fragment == null) {
-            val newFragment = HomeFragment.newInstance(param1 = viewModel.number.value.toString())
-            supportFragmentManager.commit {
-                setReorderingAllowed(true)
-                add(
-                    R.id.mainFragmentContainer,
-                    newFragment,
-                    "tagHome"
-                )
-                addToBackStack(null)
-            }
-        } else {
-            supportFragmentManager.commit {
-                show(fragment)
-            }
-        }
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.mainFragmentContainer) as NavHostFragment
+        val navController = navHostFragment.navController
+        binding.mainBottomNav.setupWithNavController(navController)
 
         if (savedInstanceState != null) {
             viewModel.setCounter(value = savedInstanceState.getInt(STATE_COUNT))
@@ -54,15 +42,6 @@ class MainActivity : AppCompatActivity() {
 
         val name = intent.getStringExtra(EXTRA_NAME)
 
-        viewModel.number.observe(this) {
-            binding.mainTv.text = "count $it"
-        }
-
-        binding.mainBtn.setOnClickListener {
-            viewModel.counter()
-//            goToDetailActivity()
-            Timber.d("onClick")
-        }
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
