@@ -1,4 +1,4 @@
-package com.arise.training.moviehub
+package com.arise.training.moviehub.ui.main.home
 
 import android.content.Context
 import android.os.Bundle
@@ -6,10 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.arise.training.moviehub.databinding.FragmentHomeBinding
+import com.arise.training.moviehub.ui.main.MainViewModel
 import timber.log.Timber
 
 // TODO: Rename parameter arguments, choose names that match

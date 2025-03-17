@@ -1,4 +1,4 @@
-package com.arise.training.moviehub
+package com.arise.training.moviehub.ui.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

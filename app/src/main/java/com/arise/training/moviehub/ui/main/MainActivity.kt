@@ -1,4 +1,4 @@
-package com.arise.training.moviehub
+package com.arise.training.moviehub.ui.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,12 +8,12 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.fragment.app.commit
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.arise.training.moviehub.SplashActivity.Companion.EXTRA_NAME
+import com.arise.training.moviehub.R
+import com.arise.training.moviehub.ui.splash.SplashActivity.Companion.EXTRA_NAME
 import com.arise.training.moviehub.databinding.ActivityMainBinding
+import com.arise.training.moviehub.ui.detail.DetailActivity
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
