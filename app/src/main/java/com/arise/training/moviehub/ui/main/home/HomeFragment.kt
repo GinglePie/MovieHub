@@ -64,12 +64,20 @@ class HomeFragment : Fragment() {
             binding.homeTv.text = "count $it"
         }
 
+        observe()
+
         binding.homeTv.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToDetailActivity(entryPoint = "open from home")
             findNavController().navigate(action)
         }
 
         Timber.d("onViewCreated $number")
+    }
+
+    private fun observe() {
+        viewModel.movies.observe(viewLifecycleOwner) {
+            binding.homeTv.text = it.get(0).title
+        }
     }
 
     override fun onStart() {
