@@ -6,7 +6,7 @@
     app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.arise.training.moviehub.HomeFragment"
+        android:name="com.arise.training.moviehub.ui.main.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -15,17 +15,17 @@
     </fragment>
     <fragment
         android:id="@+id/seachFragment"
-        android:name="com.arise.training.moviehub.SeachFragment"
+        android:name="com.arise.training.moviehub.ui.main.search.SeachFragment"
         android:label="fragment_seach"
         tools:layout="@layout/fragment_seach" />
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="com.arise.training.moviehub.FavoriteFragment"
+        android:name="com.arise.training.moviehub.ui.main.favorite.FavoriteFragment"
         android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite" />
     <activity
         android:id="@+id/detailActivity"
-        android:name="com.arise.training.moviehub.DetailActivity"
+        android:name="com.arise.training.moviehub.ui.detail.DetailActivity"
         android:label="activity_detail"
         tools:layout="@layout/activity_detail" >
         <argument
