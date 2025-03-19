@@ -10,6 +10,7 @@ import com.arise.training.moviehub.R
 import com.arise.training.moviehub.databinding.ItemPosterLargeBinding
 import com.arise.training.moviehub.databinding.ItemPosterSmallBinding
 import com.arise.training.moviehub.domain.Movie
+import timber.log.Timber
 
 class PosterSmallListAdapter: ListAdapter<Movie, PosterSmallListAdapter.ViewHolder>(DiffCallback()) {
 
@@ -27,7 +28,10 @@ class PosterSmallListAdapter: ListAdapter<Movie, PosterSmallListAdapter.ViewHold
         : RecyclerView.ViewHolder(binding.root) {
 
             fun onBind(item: Movie) {
+                Timber.d("testapp before bind ${binding.posterImv.contentDescription}")
+                binding.posterImv.contentDescription = item.title
                 binding.posterImv.setBackgroundResource(R.color.inactive_menu)
+                Timber.d("testapp before bind ${binding.posterImv.contentDescription}")
             }
     }
 

@@ -13,7 +13,7 @@ class MovieRepositoryImpl : MovieRepository {
     override suspend fun getPopularMovies(): Flow<List<Movie>> = flow {
         delay(300)
         mockMovies.clear()
-        for (i in 0..20) {
+        for (i in 0..100) {
             mockMovies.add(
                 Movie(
                     id = i,
