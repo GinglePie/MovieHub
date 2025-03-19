@@ -3,7 +3,15 @@
     <style name="Base.Theme.MovieHub" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="Theme.MovieHub" parent="Base.Theme.MovieHub" />
+
+    <style name="SearchTextAppearance" parent="Widget.AppCompat.SearchView">
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/text_normal</item>
+        <item name="android:editTextColor">@color/white</item>
+    </style>
 </resources>

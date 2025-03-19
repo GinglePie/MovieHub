@@ -28,6 +28,9 @@ class MainViewModel(
     private val _error = MutableLiveData<String?>()
     val error: LiveData<String?> = _error
 
+    private val _filterMovies = MutableLiveData<List<Movie>>()
+    val filterMovies: LiveData<List<Movie>> = _filterMovies
+
     init {
         Timber.d("init")
     }
@@ -51,10 +54,16 @@ class MainViewModel(
                 }
                 .collect {
                     _movies.value = it
+                    _filterMovies.value = it
                 }
         }
     }
 
+    fun filterMovies(text: String) {
+        _filterMovies.value = movies.value?.filter {
+            it.title.contains(text)
+        }
+    }
 
 
     override fun onCleared() {

@@ -5,16 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.activityViewModels
-import com.arise.training.moviehub.R
-import com.arise.training.moviehub.databinding.FragmentHomeBinding
 import com.arise.training.moviehub.databinding.FragmentSeachBinding
 import com.arise.training.moviehub.ui.main.MainViewModel
 import com.arise.training.moviehub.ui.main.adapter.MovieListAdapter
-import com.arise.training.moviehub.ui.main.home.adapter.PosterLargeListAdapter
-import com.arise.training.moviehub.ui.main.home.adapter.PosterSmallListAdapter
 
-class SeachFragment : Fragment() {
+class SearchFragment : Fragment() {
 
     private var _binding: FragmentSeachBinding? = null
     private val binding: FragmentSeachBinding get() = _binding!!
@@ -39,12 +36,24 @@ class SeachFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.movieRcv.adapter = adapter
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                binding.searchView.clearFocus()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                viewModel.filterMovies(newText ?: "")
+                return true
+            }
+        })
         observe()
     }
 
     private fun observe() {
-        viewModel.movies.observe(viewLifecycleOwner) {
+        viewModel.filterMovies.observe(viewLifecycleOwner) {
             adapter.submitList(it)
+            binding.movieRcv.scrollToPosition(0)
         }
     }
 
@@ -60,6 +69,6 @@ class SeachFragment : Fragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            SeachFragment()
+            SearchFragment()
     }
 }
