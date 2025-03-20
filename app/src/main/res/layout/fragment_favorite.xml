@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FavoriteFragment">
+
+    android:orientation="vertical"
+    tools:context=".ui.main.favorite.FavoriteFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/favoriteTv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_large"
         android:text="@string/watch_list"
         android:textColor="@color/white"
-        android:textSize="50sp"
-        tools:textColor="@color/black" />
+        android:fontFamily="@font/poppins_bold"
+        android:includeFontPadding="false"
+        android:textSize="@dimen/text_title" />
 
-</FrameLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        app:spanCount="2"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:itemCount="5"
+        tools:listitem="@layout/item_movie" />
+
+</LinearLayout>

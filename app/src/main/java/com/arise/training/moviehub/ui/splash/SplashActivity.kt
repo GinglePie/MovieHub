@@ -1,32 +1,37 @@
-package com.arise.training.moviehub
+package com.arise.training.moviehub.ui.splash
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.navigation.navArgs
-import com.arise.training.moviehub.databinding.ActivityDetailBinding
+import androidx.lifecycle.lifecycleScope
+import com.arise.training.moviehub.ui.main.MainActivity
+import com.arise.training.moviehub.databinding.ActivitySplashBinding
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class DetailActivity : AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityDetailBinding
-
-    val args: DetailActivityArgs by navArgs()
+    private lateinit var binding: ActivitySplashBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityDetailBinding.inflate(layoutInflater)
+        binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        binding.detailTv.text = args.entryPoint
+        lifecycleScope.launch {
+            delay(3000)
+            goToMainActivity()
+            finish()
+        }
         Timber.d("onCreate")
     }
 
@@ -58,5 +63,16 @@ class DetailActivity : AppCompatActivity() {
     override fun onRestart() {
         super.onRestart()
         Timber.d("onRestart")
+    }
+
+    fun goToMainActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra(EXTRA_NAME, "Bee Splash")
+        startActivity(intent)
+    }
+
+
+    companion object {
+        const val EXTRA_NAME = "EXTRA_HI"
     }
 }
