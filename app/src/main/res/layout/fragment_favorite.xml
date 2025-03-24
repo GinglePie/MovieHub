@@ -10,14 +10,11 @@
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/favoriteTv"
+        style="@style/TitleText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/space_large"
-        android:text="@string/watch_list"
-        android:textColor="@color/white"
-        android:fontFamily="@font/poppins_bold"
-        android:includeFontPadding="false"
-        android:textSize="@dimen/text_title" />
+        android:text="@string/watch_list" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favoriteListRcv"

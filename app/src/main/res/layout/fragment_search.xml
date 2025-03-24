@@ -8,15 +8,24 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/favoriteTv"
+        android:id="@+id/searchTv"
+        style="@style/TitleText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/space_large"
-        android:text="@string/search"
-        android:textColor="@color/white"
-        android:fontFamily="@font/poppins_bold"
-        android:includeFontPadding="false"
-        android:textSize="@dimen/text_title" />
+        android:text="@string/search" />
+    
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/space_large"
+        android:layout_marginBottom="@dimen/space_medium"
+        android:background="@drawable/shape_radius_16"
+        android:theme="@style/CustomSearchView"
+        app:iconifiedByDefault="false"
+        app:searchIcon="@drawable/ic_search" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchListRcv"

@@ -6,4 +6,5 @@
     <color name="ic_launcher_background">#242A32</color>
     <color name="active_menu">#0296E5</color>
     <color name="inactive_menu">#67686D</color>
+    <color name="grey">#3A3F47</color>
 </resources>

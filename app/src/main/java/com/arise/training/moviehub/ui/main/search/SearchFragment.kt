@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.activityViewModels
 import com.arise.training.moviehub.databinding.FragmentSearchBinding
 import com.arise.training.moviehub.ui.common.MovieListAdapter
@@ -36,13 +37,24 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.searchListRcv.adapter = adapter
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                binding.searchView.clearFocus()
+                return true
+            }
 
+            override fun onQueryTextChange(newText: String?): Boolean {
+                viewModel.filterMovies(newText ?: "")
+                return true
+            }
+        })
         observe()
     }
 
     private fun observe() {
-        viewModel.movies.observe(viewLifecycleOwner) {
+        viewModel.filterMovies.observe(viewLifecycleOwner) {
             adapter.submitList(it)
+            binding.searchListRcv.scrollToPosition(0)
         }
     }
 
