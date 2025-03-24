@@ -10,7 +10,7 @@ class MovieRepositoryImpl : MovieRepository {
 
     override suspend fun getPopularMovies(): Flow<List<Movie>> {
         val mockMovies = mutableListOf<Movie>()
-        for (i in 0 until 20) {
+        for (i in 0 until 100) {
             mockMovies.add(
                 Movie(
                     id = i,

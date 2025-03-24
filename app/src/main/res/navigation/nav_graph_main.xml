@@ -15,9 +15,9 @@
     </fragment>
     <fragment
         android:id="@+id/seachFragment"
-        android:name="com.arise.training.moviehub.ui.main.search.SeachFragment"
+        android:name="com.arise.training.moviehub.ui.main.search.SearchFragment"
         android:label="fragment_seach"
-        tools:layout="@layout/fragment_seach" />
+        tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.arise.training.moviehub.ui.main.favorite.FavoriteFragment"
