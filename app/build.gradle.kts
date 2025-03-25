@@ -52,6 +52,16 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.glide)
+
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.gson)
+    implementation(libs.gson)
+    implementation(platform(libs.okhttp.bom))
+    implementation(libs.okhttp.core)
+    implementation(libs.okhttp.logging)
+    debugImplementation(libs.chucker)
+    releaseImplementation(libs.chucker.no.op)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
