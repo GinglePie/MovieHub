@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.arise.training.moviehub.R
 import com.arise.training.moviehub.databinding.ItemMovieBinding
 import com.arise.training.moviehub.domain.Movie
+import com.bumptech.glide.Glide
 import timber.log.Timber
 
 class MovieListAdapter : ListAdapter<Movie, MovieListAdapter.ViewHolder>(DiffCallback()) {
@@ -31,7 +32,13 @@ class MovieListAdapter : ListAdapter<Movie, MovieListAdapter.ViewHolder>(DiffCal
         fun onBind(item: Movie) {
             Timber.d("testapp before onBind ${binding.tileTv.text}")
             binding.tileTv.text = item.title
-            binding.posterImv.setBackgroundResource(R.drawable.poster)
+            Glide.with(binding.root.context)
+                .load(item.posterUrl)
+                .centerCrop()
+                .placeholder(R.drawable.shape_radius_16)
+                .error(R.drawable.shape_image_error)
+                .into(binding.posterImv)
+//            binding.posterImv.setBackgroundResource(R.drawable.poster)
             Timber.d("testapp after onBind ${binding.tileTv.text}")
         }
 
